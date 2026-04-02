@@ -76,7 +76,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: docker
-      POSTGRES_DB: your_db #name this whatever you want your db to be
+      POSTGRES_DB: movies #name this whatever you want your db to be
     ports:
       - "5432:5432"
     volumes:
@@ -115,7 +115,7 @@ $touch .env
 ```
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=docker
-POSTGRES_DB=your_db
+POSTGRES_DB=movies
 PORT=8080
 #Use openssl rand -base64 64 to generate a code for each of these
 ACCESS_TOKEN_SECRET=
@@ -129,24 +129,24 @@ Setup complete
 
 $cd server/db
 
-Be sure to change your-db-name to something real
+Be sure to change movies-db to something real
 
-$docker run --name your-db-name \   
+$docker run --name movies-db \   
 -e POSTGRES_PASSWORD=docker \   
 -d \   
 -p 5432:5432 \   
 -v $HOME/docker/volumes/postgres:/var/lib/postgresql \   
 postgres   
 
-$docker exec -it your-db-name psql -U postgres   
+$docker exec -it movies-db psql -U postgres   
 
 You should see postgres=#
 
-$CREATE DATABASE yourdb;
+$CREATE DATABASE movies;
 
-$\c yourdb
+$\c movies
 
-You should see yourdb=#
+You should see movies=#
 
 ==== _03 KNEX ====
 
@@ -166,8 +166,8 @@ change knexfile.js development to:
   },
 ```
 
-$npx knex migrate:make create_yourinfo (can be anything create_cats create_favorites etc)    
-$npx knex seed:make 01_your_data (make sure it matches the migrate like 01_favorites_data)
+$npx knex migrate:make create_favorites (can be anything create_cats create_favorites etc)    
+$npx knex seed:make 01_favorites_data (make sure it matches the migrate)
 
 Modify your new migration. Example follows:
 
@@ -340,7 +340,7 @@ CMD ["npm", "start"]
 
 # LAST STEPS TO DOUBLE CHECK   
 # Before composing, return to your knexfile.js and change host: "localhost" to host: 'db',   
-# Make sure everywhere you saw "yourdb" or "your-db-name" or anything like that, you change to the actual name of the db. like "movies"   
+# Make sure everywhere you saw "movies" or anything like that, you change to the actual name of the db. 
 
 $cd ..
 $docker compose up
