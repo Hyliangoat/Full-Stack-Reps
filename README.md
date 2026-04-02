@@ -3,6 +3,7 @@
 This is a guide to set up a very simple, very basic full stack application that can be expanded on further when needed.  
 This is to get reps in the silly little steps required to just build a project.   
 The formatting of the stuff below changes whether you are in visual code or in github. Legend follows to help  
+You can copy and paste this into a readme in your visual code studio or other environment, and follow it on a separate tab  
 
 Legend:
 # ``` <- is the start of a file (boilerplate stuff)
