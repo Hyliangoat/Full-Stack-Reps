@@ -8,7 +8,7 @@ You can copy and paste this into a readme in your visual code studio or other en
 Legend:
 # ``` <- is the start of a file (boilerplate stuff)
 # === <- this segregates all new steps
-# $ <- this signifies a terminal command
+# * *$ <- this signifies a terminal command
 
 Contents (use CTRL-f to find the number with the underscore):
 
@@ -43,25 +43,25 @@ This is insanely basic. Modify it with routes and controllers and all that at yo
 
 Commands:
 
-$mkdir client server  
-$cd server  
-$npm init -y  
-$npm install bcrypt cors dotenv express knex nodemon pg postgres ps  
-$touch index.js  
+* *$mkdir client server  
+* *$cd server  
+* *$npm init -y  
+* *$npm install bcrypt cors dotenv express knex nodemon pg postgres ps  
+* *$touch index.js  
 
 change package.json to contain "start": "nodemon index.js"
 
-$mkdir db  
+* *$mkdir db  
 
 
-$cd ../client   
-$npm create vite@latest  (leave the default name if you are following this tutorial word for word)   
-$cd vite-project   
-$npm install   
+* *$cd ../client   
+* *$npm create vite@latest  (leave the default name if you are following this tutorial word for word)   
+* *$cd vite-project   
+* *$npm install   
 
 
-$cd ../..   
-$touch docker-compose.yaml   
+* *$cd ../..   
+* *$touch docker-compose.yaml   
 
 
 docker-compose.yaml contents:
@@ -111,7 +111,7 @@ volumes:
 
 ```
 
-$touch .env   
+* *$touch .env   
 
 .env contents:
 ```
@@ -129,30 +129,30 @@ Setup complete
 
 ===== _02 DATABASE ====
 
-$cd server/db
+* *$cd server/db
 
 Be sure to change movies-db to something you want your docker container to be called, we call this in a minute
 
-$docker run --name movies-db \   
--e POSTGRES_PASSWORD=docker \   
--d \   
--p 5432:5432 \   
--v $HOME/docker/volumes/postgres:/var/lib/postgresql \   
-postgres   
+* *$docker run --name movies-db \
+-e POSTGRES_PASSWORD=docker \
+-d \
+-p 5432:5432 \
+-v $HOME/docker/volumes/postgres:/var/lib/postgresql \
+postgres
 
-$docker exec -it movies-db psql -U postgres   
+* *$docker exec -it movies-db psql -U postgres   
 
 You should see postgres=#
 
-$CREATE DATABASE movies;
+* *$CREATE DATABASE movies;
 
-$\c movies
+* *$\c movies
 
 You should see movies=#
 
 ==== _03 KNEX ====
 
-$npx knex init
+* *$npx knex init
 
 change knexfile.js development to:
 ```
@@ -168,8 +168,8 @@ change knexfile.js development to:
   },
 ```
 
-$npx knex migrate:make create_favorites (can be anything create_cats create_favorites etc)    
-$npx knex seed:make 01_favorites_data (make sure it matches the migrate)
+* *$npx knex migrate:make create_favorites (can be anything create_cats create_favorites etc)    
+* *$npx knex seed:make 01_favorites_data (make sure it matches the migrate)
 
 Modify your new migration. Example follows:
 
@@ -245,8 +245,8 @@ app.listen(8000, () => {
 });
 ```
 
-$cd .. (this should take you to the /server folder)   
-$npm start   
+* *$cd .. (this should take you to the /server folder)   
+* *$npm start   
 
 Enter browser. Test http://localhost:8000 and http://localhost:8000/movies   
 If db is running and server is running, you should see your listen message and your movie list.   
@@ -254,7 +254,7 @@ If db is running and server is running, you should see your listen message and y
 
 ==== _05 FRONT END SETUP ====
 
-$cd ../client/vite-project
+* *$cd ../client/vite-project
 
 delete everything in the /public folder, open App.jsx (in /src)   
 Replace with boilerplate example:   
@@ -299,7 +299,7 @@ function App() {
 export default App;
 ```
 
-$npm run dev
+* *$npm run dev
 
 You should see a screen with a loading...   
 If your DB and server are still running in or out of docker, shut them down.   
@@ -313,7 +313,7 @@ Edit package.json scripts to contain:
 
 ==== _06 DOCKER COMPOSE AND FINISH ====
 inside vite-project:   
-$touch Dockerfile    
+* *$touch Dockerfile    
 
 Client Dockerfile boierplate:
 
@@ -326,8 +326,8 @@ RUN npm install
 CMD ["npm", "start"]
 ```
 
-cd ../../server   
-$touch Dockerfile   
+* *$cd ../../server   
+* *$touch Dockerfile   
 
 Server Dockerfile boilerplate:
 
@@ -344,8 +344,8 @@ CMD ["npm", "start"]
 # Before composing, return to your knexfile.js and change host: "localhost" to host: 'db',   
 # Make sure everywhere you saw "movies" or anything like that, you change to the actual name of the db. 
 
-$cd ..
-$docker compose up
+* *$cd ..
+* *$docker compose up
 
 Go to http://localhost:3000
 
