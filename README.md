@@ -153,7 +153,7 @@ You should see yourdb=#
 $npx knex init
 
 change knexfile.js development to:
-
+```
   development: {
     client: 'postgresql',
     connection: {
@@ -164,6 +164,7 @@ change knexfile.js development to:
       database: 'yourdb' //Replace this with the name of the db you CREATE DATABASE'd
     }
   },
+```
 
 $npx knex migrate:make create_yourinfo (can be anything create_cats create_favorites etc)
 $npx knex seed:make 01_your_data (make sure it matches the migrate like 01_favorites_data)
