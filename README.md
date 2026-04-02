@@ -1,4 +1,4 @@
-================================================Step by Step guide to SDI full stack for dummies like me==========================================
+====Step by Step guide to SDI full stack for dummies like me====
 
 This is a guide to set up a very simple, very basic full stack application that can be expanded on further when needed. 
 This is to get reps in the silly little steps required to just build a project.
@@ -10,14 +10,14 @@ Legend:
 
 Contents (use CTRL-f to find the number with the underscore):
 
-_01 - Project setup (folders, structure, etc)
-_02 - Database Setup
-_03 - Knex setup
-_04 - Back end api setup
-_05 - Front end setup
-_06 - Docker compose and finish
+# _01 - Project setup (folders, structure, etc)
+# _02 - Database Setup
+# _03 - Knex setup
+# _04 - Back end api setup
+# _05 - Front end setup
+# _06 - Docker compose and finish
 
-==========================================================_01 Project Setup========================================================
+====_01 Project Setup====
 
 File structure will eventually look like:
 
@@ -125,7 +125,7 @@ JWT_SECRET=
 
 Setup complete
 
-=============================================================== _02 DATABASE =========================================================
+===== _02 DATABASE ====
 
 $cd server/db
 
@@ -148,7 +148,7 @@ $\c yourdb
 
 You should see yourdb=#
 
-=============================================================== _03 KNEX ====================================================================
+==== _03 KNEX ====
 
 $npx knex init
 
@@ -213,7 +213,7 @@ exports.seed = async function(knex) {
 Test with $npx knex migrate:latest and $npx knex seed:run
 You should see two successes
 
-======================================================== _04 BACKEND API SETUP ==============================================================
+==== _04 BACKEND API SETUP ====
 
 Edit index.js to contain basic get and listen. Example follows:
 
@@ -249,7 +249,7 @@ Enter browser. Test http://localhost:8000 and http://localhost:8000/movies
 If db is running and server is running, you should see your listen message and your movie list.
 
 
-=============================================================== _05 FRONT END SETUP ==========================================================
+==== _05 FRONT END SETUP ====
 
 $cd ../client/vite-project
 
@@ -308,7 +308,7 @@ Edit package.json scripts to contain:
 
 
 
-========================================================= _06 DOCKER COMPOSE AND FINISH ====================================================
+==== _06 DOCKER COMPOSE AND FINISH ====
 inside vite-project:
 $touch Dockerfile 
 
@@ -337,9 +337,9 @@ EXPOSE 8000
 CMD ["npm", "start"]
 ```
 
-LAST STEPS TO DOUBLE CHECK
-Before composing, return to your knexfile.js and change host: "localhost" to host: 'db',
-Make sure everywhere you saw "yourdb" or "your-db-name" or anything like that, you change to the actual name of the db. like "movies"
+# LAST STEPS TO DOUBLE CHECK
+# Before composing, return to your knexfile.js and change host: "localhost" to host: 'db',
+# Make sure everywhere you saw "yourdb" or "your-db-name" or anything like that, you change to the actual name of the db. like "movies"
 
 $cd ..
 $docker compose up
