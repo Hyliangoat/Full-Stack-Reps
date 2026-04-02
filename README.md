@@ -1,7 +1,8 @@
 ====Step by Step guide to SDI full stack for dummies like me====
 
 This is a guide to set up a very simple, very basic full stack application that can be expanded on further when needed.  
-This is to get reps in the silly little steps required to just build a project.
+This is to get reps in the silly little steps required to just build a project.   
+The formatting of the stuff below changes whether you are in visual code or in github. Legend follows to help  
 
 Legend:
 # ``` <- is the start of a file (boilerplate stuff)
@@ -129,7 +130,7 @@ Setup complete
 
 $cd server/db
 
-Be sure to change movies-db to something real
+Be sure to change movies-db to something you want your docker container to be called, we call this in a minute
 
 $docker run --name movies-db \   
 -e POSTGRES_PASSWORD=docker \   
