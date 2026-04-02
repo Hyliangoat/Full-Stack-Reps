@@ -43,11 +43,11 @@ This is insanely basic. Modify it with routes and controllers and all that at yo
 
 Commands:
 
-* *$mkdir client server  
-* *$cd server  
-* *$npm init -y  
-* *$npm install bcrypt cors dotenv express knex nodemon pg postgres ps  
-* *$touch index.js  
+* * $mkdir client server  
+* * $cd server  
+* * $npm init -y  
+* * $npm install bcrypt cors dotenv express knex nodemon pg postgres ps  
+* * $touch index.js  
 
 change package.json to contain "start": "nodemon index.js"
 
