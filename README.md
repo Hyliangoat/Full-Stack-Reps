@@ -311,8 +311,8 @@ Edit package.json scripts to contain:
 
 
 
-==== _06 DOCKER COMPOSE AND FINISH ====
-inside vite-project:   
+==== _06 DOCKER COMPOSE AND FINISH ====   
+inside vite-project:      
 * $touch Dockerfile    
 
 Client Dockerfile boierplate:
