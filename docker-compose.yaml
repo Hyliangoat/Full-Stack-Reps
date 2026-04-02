@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:latest
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"] #This tests for the health of the db, to ensure db runs before everything else
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: movies #name this whatever you want your db to be
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/
+
+  server:
+    build: ./server
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy #Waits for healthy DB
+    env_file:
+      - .env
+    volumes:
+      - ./server:/app
+    command: sh -c "npx knex migrate:latest --knexfile ./db/knexfile.js && npx knex seed:run --knexfile ./db/knexfile.js && npm start" #Forces migrations and seeds on start
+  
+  client:
+    build: ./client/vite-project
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    volumes:
+      - ./client/vite-project:/app
+
+volumes:
+  db_data:
