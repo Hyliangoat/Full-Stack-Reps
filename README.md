@@ -163,7 +163,7 @@ change knexfile.js development to:
       user: 'postgres',
       password: 'docker',
       port: 5432,
-      database: 'yourdb' //Replace this with the name of the db you CREATE DATABASE'd
+      database: 'movies' //Replace this with the name of the db you CREATE DATABASE'd
     }
   },
 ```
