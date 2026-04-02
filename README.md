@@ -1,6 +1,6 @@
 ====Step by Step guide to SDI full stack for dummies like me====
 
-This is a guide to set up a very simple, very basic full stack application that can be expanded on further when needed. 
+This is a guide to set up a very simple, very basic full stack application that can be expanded on further when needed.  
 This is to get reps in the silly little steps required to just build a project.
 
 Legend:
@@ -41,25 +41,25 @@ This is insanely basic. Modify it with routes and controllers and all that at yo
 
 Commands:
 
-$mkdir client server
-$cd server
-$npm init -y
-$npm install bcrypt cors dotenv express knex nodemon pg postgres ps
-$touch index.js
+$mkdir client server  
+$cd server  
+$npm init -y  
+$npm install bcrypt cors dotenv express knex nodemon pg postgres ps  
+$touch index.js  
 
 change package.json to contain "start": "nodemon index.js"
 
-$mkdir db
+$mkdir db  
 
 
-$cd ../client
-$npm create vite@latest  (leave the default name if you are following this tutorial word for word)
-$cd vite-project
-$npm install
+$cd ../client   
+$npm create vite@latest  (leave the default name if you are following this tutorial word for word)   
+$cd vite-project   
+$npm install   
 
 
-$cd ../..
-$touch docker-compose.yaml
+$cd ../..   
+$touch docker-compose.yaml   
 
 
 docker-compose.yaml contents:
@@ -109,7 +109,7 @@ volumes:
 
 ```
 
-$touch .env
+$touch .env   
 
 .env contents:
 ```
@@ -131,14 +131,14 @@ $cd server/db
 
 Be sure to change your-db-name to something real
 
-$docker run --name your-db-name \
--e POSTGRES_PASSWORD=docker \
--d \
--p 5432:5432 \
--v $HOME/docker/volumes/postgres:/var/lib/postgresql \
-postgres
+$docker run --name your-db-name \   
+-e POSTGRES_PASSWORD=docker \   
+-d \   
+-p 5432:5432 \   
+-v $HOME/docker/volumes/postgres:/var/lib/postgresql \   
+postgres   
 
-$docker exec -it your-db-name psql -U postgres
+$docker exec -it your-db-name psql -U postgres   
 
 You should see postgres=#
 
@@ -166,7 +166,7 @@ change knexfile.js development to:
   },
 ```
 
-$npx knex migrate:make create_yourinfo (can be anything create_cats create_favorites etc)
+$npx knex migrate:make create_yourinfo (can be anything create_cats create_favorites etc)    
 $npx knex seed:make 01_your_data (make sure it matches the migrate like 01_favorites_data)
 
 Modify your new migration. Example follows:
@@ -211,7 +211,7 @@ exports.seed = async function(knex) {
 };
 ```
 
-Test with $npx knex migrate:latest and $npx knex seed:run
+Test with $npx knex migrate:latest and $npx knex seed:run   
 You should see two successes
 
 ==== _04 BACKEND API SETUP ====
@@ -243,19 +243,19 @@ app.listen(8000, () => {
 });
 ```
 
-$cd .. (this should take you to the /server folder)
-$npm start
+$cd .. (this should take you to the /server folder)   
+$npm start   
 
-Enter browser. Test http://localhost:8000 and http://localhost:8000/movies
-If db is running and server is running, you should see your listen message and your movie list.
+Enter browser. Test http://localhost:8000 and http://localhost:8000/movies   
+If db is running and server is running, you should see your listen message and your movie list.   
 
 
 ==== _05 FRONT END SETUP ====
 
 $cd ../client/vite-project
 
-delete everything in the /public folder, open App.jsx (in /src)
-Replace with boilerplate example:
+delete everything in the /public folder, open App.jsx (in /src)   
+Replace with boilerplate example:   
 
 
 ```
@@ -299,8 +299,8 @@ export default App;
 
 $npm run dev
 
-You should see a screen with a loading...
-If your DB and server are still running in or out of docker, shut them down.
+You should see a screen with a loading...   
+If your DB and server are still running in or out of docker, shut them down.   
 
 Edit package.json scripts to contain:
 ```
@@ -310,8 +310,8 @@ Edit package.json scripts to contain:
 
 
 ==== _06 DOCKER COMPOSE AND FINISH ====
-inside vite-project:
-$touch Dockerfile 
+inside vite-project:   
+$touch Dockerfile    
 
 Client Dockerfile boierplate:
 
@@ -324,8 +324,8 @@ RUN npm install
 CMD ["npm", "start"]
 ```
 
-cd ../../server
-$touch Dockerfile
+cd ../../server   
+$touch Dockerfile   
 
 Server Dockerfile boilerplate:
 
@@ -338,19 +338,19 @@ EXPOSE 8000
 CMD ["npm", "start"]
 ```
 
-# LAST STEPS TO DOUBLE CHECK
-# Before composing, return to your knexfile.js and change host: "localhost" to host: 'db',
-# Make sure everywhere you saw "yourdb" or "your-db-name" or anything like that, you change to the actual name of the db. like "movies"
+# LAST STEPS TO DOUBLE CHECK   
+# Before composing, return to your knexfile.js and change host: "localhost" to host: 'db',   
+# Make sure everywhere you saw "yourdb" or "your-db-name" or anything like that, you change to the actual name of the db. like "movies"   
 
 $cd ..
 $docker compose up
 
 Go to http://localhost:3000
 
-You should see everything up and running
-Continue from here as you wish.
+You should see everything up and running   
+Continue from here as you wish.   
 
-If you run this multiple times with the exact same info, be sure to
-docker compose down-v
-npx knex migrate:rollback
-enter your database and DELETE FROM knex_migrations WHERE name IN(whatever you named your migration folder), because this will cause issues next migrate
+If you run this multiple times with the exact same info, be sure to   
+docker compose down-v   
+npx knex migrate:rollback   
+enter your database and DELETE FROM knex_migrations WHERE name IN(whatever you named your migration folder), because this will cause issues next migrate   
