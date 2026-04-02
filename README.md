@@ -4,9 +4,9 @@ This is a guide to set up a very simple, very basic full stack application that 
 This is to get reps in the silly little steps required to just build a project.
 
 Legend:
-``` <- is the start of a file (boilerplate stuff)
-=== <- this segregates all new steps
-$ <- this signifies a terminal command
+# ``` <- is the start of a file (boilerplate stuff)
+# === <- this segregates all new steps
+# $ <- this signifies a terminal command
 
 Contents (use CTRL-f to find the number with the underscore):
 
@@ -21,6 +21,7 @@ _06 - Docker compose and finish
 
 File structure will eventually look like:
 
+```
 |--/Root
 |  |--/Client
 |  |  |--/vite-project
@@ -34,6 +35,7 @@ File structure will eventually look like:
 |  |--.env
 |  |--.gitignore
 |  |--docker-compose.yaml
+```
 
 This is insanely basic. Modify it with routes and controllers and all that at your own leisure
 
