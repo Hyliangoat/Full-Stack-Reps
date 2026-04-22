@@ -150,6 +150,8 @@ You should see postgres=#
 
 You should see movies=#
 
+Open a new terminal, leave this db running, cd into server/db
+
 ==== _03 KNEX ====
 
 * $npx knex init
